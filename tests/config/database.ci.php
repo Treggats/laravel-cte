@@ -57,4 +57,23 @@ return [
         'prefix' => '',
         'prefix_indexes' => true,
     ],
+    'singlestore' => [
+        'driver' => 'singlestore',
+        'host' => '127.0.0.1',
+        'port' => '3306',
+        'database' => 'laravel-cte',
+        'username' => 'homestead',
+        'password' => 'secret',
+        'unix_socket' => '',
+        'charset' => 'utf8mb4',
+        'collation' => 'utf8mb4_unicode_ci',
+        'prefix' => '',
+        'prefix_indexes' => true,
+        'strict' => true,
+        'engine' => null,
+        'options' => extension_loaded('pdo_mysql') ? array_filter([
+            PDO::ATTR_EMULATE_PREPARES => true,
+            PDO::ATTR_PERSISTENT => true,
+        ]) : [],
+    ],
 ];
