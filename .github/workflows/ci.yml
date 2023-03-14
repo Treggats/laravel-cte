@@ -14,6 +14,8 @@ jobs:
         include:
           - database: mysql
             pdo: mysql
+          - database: singlestore
+            pdo: mysql
           - database: mariadb
             pdo: mysql
           - database: pgsql
