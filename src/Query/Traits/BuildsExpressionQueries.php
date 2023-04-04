@@ -68,7 +68,7 @@ trait BuildsExpressionQueries
     protected function getQueryGrammar(Connection $connection)
     {
         return match ($connection->getDriverName()) {
-            'mysql' => new MySqlGrammar(),
+            'mysql', 'singlestore' => new MySqlGrammar(),
             'pgsql' => new PostgresGrammar(),
             'sqlite' => new SQLiteGrammar(),
             'sqlsrv' => new SqlServerGrammar(),
