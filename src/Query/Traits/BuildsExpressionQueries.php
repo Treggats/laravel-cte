@@ -67,20 +67,13 @@ trait BuildsExpressionQueries
      */
     protected function getQueryGrammar(Connection $connection)
     {
-        $driver = $connection->getDriverName();
-
-        switch ($driver) {
-            case 'mysql':
-                return new MySqlGrammar();
-            case 'pgsql':
-                return new PostgresGrammar();
-            case 'sqlite':
-                return new SQLiteGrammar();
-            case 'sqlsrv':
-                return new SqlServerGrammar();
-        }
-
-        throw new RuntimeException('This database is not supported.'); // @codeCoverageIgnore
+        return match ($connection->getDriverName()) {
+            'mysql' => new MySqlGrammar(),
+            'pgsql' => new PostgresGrammar(),
+            'sqlite' => new SQLiteGrammar(),
+            'sqlsrv' => new SqlServerGrammar(),
+            default => throw new RuntimeException('This database is not supported.'), // @codeCoverageIgnore
+        };
     }
 
     /**
